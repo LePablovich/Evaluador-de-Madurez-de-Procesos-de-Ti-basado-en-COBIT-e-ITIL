@@ -32,6 +32,11 @@
       color: white;
       border: none;
       border-radius: 5px;
+      cursor: pointer;
+    }
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
     }
     .error {
       color: red;
@@ -44,26 +49,44 @@
     <h3>Acceso al Dashboard</h3>
     <input type="text" id="usuario" placeholder="Usuario">
     <input type="password" id="contrasena" placeholder="Contraseña">
-    <button onclick="iniciarSesion()">Iniciar Sesión</button>
+    <button id="loginBtn" disabled>Cargando usuarios...</button>
     <div id="error" class="error"></div>
   </div>
 
   <script>
     let usuarios = {};
-    
+    let datosCargados = false;
+    const loginBtn = document.getElementById("loginBtn");
+
     fetch('https://raw.githubusercontent.com/LePablovich/Evaluador-de-Madurez-de-Procesos-de-TI-basado-en-COBIT-e-ITIL/main/usuarios.json')
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Error al obtener el archivo JSON");
+        }
+        return response.json();
+      })
       .then(data => {
         usuarios = data;
+        datosCargados = true;
+        loginBtn.textContent = "Iniciar Sesión";
+        loginBtn.disabled = false;
       })
       .catch(error => {
         console.error("Error al cargar usuarios:", error);
+        document.getElementById("error").textContent = "Error al cargar datos de acceso.";
       });
+
+    loginBtn.addEventListener("click", iniciarSesion);
 
     function iniciarSesion() {
       const usuario = document.getElementById("usuario").value.trim().toLowerCase();
       const contrasena = document.getElementById("contrasena").value.trim();
       const errorDiv = document.getElementById("error");
+
+      if (!datosCargados) {
+        errorDiv.textContent = "Los datos aún se están cargando. Intenta en unos segundos.";
+        return;
+      }
 
       if (usuarios[usuario] && usuarios[usuario].contrasena === contrasena) {
         const empresaCodificada = encodeURIComponent(usuarios[usuario].nombre);
