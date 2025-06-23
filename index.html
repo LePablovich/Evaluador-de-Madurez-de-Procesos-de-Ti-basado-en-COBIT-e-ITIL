@@ -50,8 +50,8 @@
 
   <script>
     let usuarios = {};
-
-      fetch('usuarios.json')
+    
+    fetch('https://raw.githubusercontent.com/LePablovich/Evaluador-de-Madurez-de-Procesos-de-TI-basado-en-COBIT-e-ITIL/main/usuarios.json')
       .then(response => response.json())
       .then(data => {
         usuarios = data;
