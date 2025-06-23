@@ -10,5 +10,9 @@
   "gatitosdevs.a.": {
     "nombre": "Gatitos Dev S.A.",
     "contrasena": "1234"
+  },
+  "minecraft": {
+    "nombre": "Minecraft",
+    "contrasena": "1234"
   }
 }
