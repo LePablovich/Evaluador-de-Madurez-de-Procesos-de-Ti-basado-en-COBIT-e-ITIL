@@ -1,14 +1,14 @@
 {
-  "empresa1": {
-    "nombre": "Empresa1",
+  "empresaprueba1": {
+    "nombre": "Empresa Prueba 1",
     "contrasena": "1234"
   },
-  "preba2": {
-    "nombre": "preba 2",
-    "contrasena": "5678"
+  "overwatch": {
+    "nombre": "Overwatch",
+    "contrasena": "1234"
   },
-  "null": {
-    "nombre": "null",
-    "contrasena": "0000"
+  "gatitosdevs.a.": {
+    "nombre": "Gatitos Dev S.A.",
+    "contrasena": "1234"
   }
 }
