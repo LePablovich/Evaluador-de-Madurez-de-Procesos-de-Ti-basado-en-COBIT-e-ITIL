@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Empresas TI</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-container {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      width: 300px;
+    }
+    input {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+    }
+    button {
+      width: 100%;
+      padding: 0.5rem;
+      background-color: #8B5E3C;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    .error {
+      color: red;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h3>Acceso al Dashboard</h3>
+    <input type="text" id="usuario" placeholder="Usuario">
+    <input type="password" id="contrasena" placeholder="Contraseña">
+    <button onclick="iniciarSesion()">Iniciar Sesión</button>
+    <div id="error" class="error"></div>
+  </div>
+
+  <script>
+    let usuarios = {};
+
+        fetch('https://drive.google.com/uc?export=download&id=1C-P7QQPwXXRE3RyEFwRi4BokEu0dK-2E')
+      .then(response => response.json())
+      .then(data => {
+        usuarios = data;
+      })
+      .catch(error => {
+        console.error("Error al cargar usuarios:", error);
+      });
+
+    function iniciarSesion() {
+      const usuario = document.getElementById("usuario").value.trim().toLowerCase();
+      const contrasena = document.getElementById("contrasena").value.trim();
+      const errorDiv = document.getElementById("error");
+
+      if (usuarios[usuario] && usuarios[usuario].contrasena === contrasena) {
+        const empresaCodificada = encodeURIComponent(usuarios[usuario].nombre);
+        const urlRedireccion = `https://lookerstudio.google.com/reporting/df058f66-6899-4ce6-b591-0cdb08f0cc3a/page/KxkOF?params={\"ds5.empresa\":\"${empresaCodificada}\"}`;
+        window.location.href = urlRedireccion;
+      } else {
+        errorDiv.textContent = "Usuario o contraseña incorrectos.";
+      }
+    }
+  </script>
+</body>
+</html>

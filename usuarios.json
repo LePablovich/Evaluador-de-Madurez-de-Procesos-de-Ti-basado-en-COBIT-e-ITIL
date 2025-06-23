@@ -1,0 +1,14 @@
+{
+  "empresa1": {
+    "nombre": "Empresa1",
+    "contrasena": "1234"
+  },
+  "preba2": {
+    "nombre": "preba 2",
+    "contrasena": "5678"
+  },
+  "null": {
+    "nombre": "null",
+    "contrasena": "0000"
+  }
+}
