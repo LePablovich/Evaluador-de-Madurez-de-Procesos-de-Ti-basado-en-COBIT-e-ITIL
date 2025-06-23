@@ -6,33 +6,75 @@
   <title>Login Empresas TI</title>
   <style>
     body {
-      font-family: sans-serif;
-      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #e0e0e0, #f8f8f8);
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
     }
+
     .login-container {
       background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      width: 300px;
+      padding: 2.5rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      width: 320px;
+      text-align: center;
+      transition: all 0.3s ease-in-out;
     }
-    input {
+
+    .login-container h2 {
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="password"] {
       width: 100%;
+      padding: 0.8rem;
       margin-bottom: 1rem;
-      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: border 0.3s;
     }
+
+    input:focus {
+      border-color: #7b4f2d;
+      outline: none;
+    }
+
     button {
       width: 100%;
-      padding: 0.5rem;
-      background-color: #8B5E3C;
-      color: white;
+      padding: 0.9rem;
+      background-color: #7b4f2d;
       border: none;
-      border-radius: 5px;
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
       cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #5e3d22;
+    }
+
+    .extra-link {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .extra-link a {
+      color: #7b4f2d;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .extra-link a:hover {
+      text-decoration: underline;
     }
     button:disabled {
       background-color: #ccc;
@@ -46,10 +88,13 @@
 </head>
 <body>
   <div class="login-container">
-    <h3>Acceso al Dashboard</h3>
+    <h3>Sistema de Evaluación de Proceos de Madurez</h3>
     <input type="text" id="usuario" placeholder="Usuario">
     <input type="password" id="contrasena" placeholder="Contraseña">
     <button id="loginBtn" disabled>Cargando usuarios...</button>
+     <div class="extra-link">
+      ¿Aún no llena el formulario? <a href="https://forms.gle/PYKemBGp7TUDqhvt7" target="_blank">Haga click aquí</a>
+    </div>
     <div id="error" class="error"></div>
   </div>
 
